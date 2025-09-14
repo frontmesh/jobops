@@ -33,6 +33,8 @@ JobOps is a professional job board platform built using Leptos (Rust web framewo
 - [Node.js](https://nodejs.org/) (for Tailwind CSS)
 - [wasm-bindgen-cli](https://github.com/rustwasm/wasm-bindgen)
 - [Wrangler CLI](https://developers.cloudflare.com/workers/wrangler/) (for deployment)
+- [Just](https://github.com/casey/just) (task runner, recommended)
+- [entr](http://entrproject.org/) (optional, for file watching)
 
 ### Local Development
 
@@ -67,6 +69,27 @@ JobOps is a professional job board platform built using Leptos (Rust web framewo
 
 5. **Open in browser**
    Navigate to `http://localhost:8080`
+
+### Using Just (Recommended)
+
+If you have [Just](https://github.com/casey/just) installed, you can use the convenient commands:
+
+```bash
+# Start development server (builds and serves)
+just dev
+
+# Watch CSS files for changes (in separate terminal)
+just watch-css
+
+# Build everything
+just build
+
+# Deploy to Cloudflare Pages
+just deploy
+
+# See all available commands
+just --list
+```
 
 ## 📁 Project Structure
 
