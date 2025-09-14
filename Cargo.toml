@@ -18,6 +18,12 @@ opt-level = 's'
 lto = true
 strip = true
 
+[profile.wasm-release]
+inherits = "release"
+lto = true
+opt-level = 'z'
+strip = true
+
 [dependencies]
 leptos = { version = "0.6", default-features = false, features = ["nightly"] }
 leptos_meta = { version = "0.6", default-features = false, features = [
@@ -37,6 +43,17 @@ wasm-bindgen = "0.2"
 tower = "0.4.13"
 js-sys = "0.3.69"
 
+# Added dependencies from job-ops
+console_error_panic_hook = "0.1"
+pulldown-cmark = "0.13.0"
+serde = { version = "1.0.219", features = ["derive"] }
+chrono = { version = "0.4.40", features = ["serde"] }
+serde_json = "1.0.140"
+toml = "0.8.20"
+markdown = "0.3.0"
+console_log = "1.0"
+log = "0.4.27"
+
 [features]
 default = ["ssr"]
 hydrate = ["leptos/hydrate", "leptos_meta/hydrate", "leptos_router/hydrate"]
@@ -47,3 +64,33 @@ ssr = [
   "leptos_meta/ssr",
   "leptos_router/ssr",
 ]
+
+[package.metadata.leptos]
+# The name used by wasm-bindgen/cargo-leptos for the JS/WASM bundle. Defaults to the crate name
+output-name = "leptos-cloudflare-example"
+# The site root folder is where cargo-leptos generate all output. WARNING: all content of this folder will be erased on a rebuild. Use it in your server setup.
+site-root = "target/site"
+# The site-root relative folder where all compiled output (JS, WASM and CSS) is written
+# Defaults to pkg
+site-pkg-dir = "pkg"
+# [Optional] The source CSS file. If it ends with .sass or .scss then it will be compiled by dart-sass into CSS. The CSS is optimized by Lightning CSS before being written to <site-root>/<site-pkg>/app.css
+style-file = "style/output.css"
+# Assets source dir. All files in this directory will be copied to site-root
+assets-dir = "public"
+# The tailwind input file
+tailwind-input-file = "style/tailwind.css"
+# The tailwind config file
+tailwind-config-file = "tailwind.config.js"
+# [Optional] Files in the asset-dir that shall be copied to the site-root only if they have changed. Used to avoid invalidating browser caches.
+cache-busted-files = []
+
+# The IP and port where the server serves the content. Use it in your server setup.
+site-addr = "127.0.0.1:3000"
+
+# The same as site-addr but for the browser that connects to the server. Defaults to 127.0.0.1:3000
+# [Optional] Command to use when running end2end tests. It will run in the end2end dir.
+end2end-cmd = "npx playwright test"
+# Command to use when running end2end tests and the browser needs to connect to a default server.
+end2end-server-command = "cargo run --no-default-features --features=ssr"
+# The browserlist query used for optimizing the CSS.
+browserquery = "defaults"

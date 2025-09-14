@@ -4,7 +4,8 @@ use leptos_axum::{generate_route_list, LeptosRoutes};
 use tower::Service;
 use worker::*;
 
-use leptos_cloudflare_example::app::{GenerateRandomNumber, HelloWorld};
+use leptos_cloudflare_example::app::{App, GenerateRandomNumber};
+use leptos_cloudflare_example::api::posts::{GetPosts, GetPost};
 
 #[event(fetch)]
 pub async fn fetch(
@@ -19,9 +20,11 @@ pub async fn fetch(
 
     // Automatic registration of server_fns doesn't work in WASM
     register_explicit::<GenerateRandomNumber>();
+    register_explicit::<GetPosts>();
+    register_explicit::<GetPost>();
 
     let mut router = Router::new()
-        .leptos_routes(&leptos_options, generate_route_list(HelloWorld), HelloWorld)
+        .leptos_routes(&leptos_options, generate_route_list(App), App)
         .with_state(leptos_options);
 
     Ok(router.call(req).await?)
