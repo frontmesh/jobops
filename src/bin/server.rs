@@ -4,7 +4,7 @@ use leptos_axum::{generate_route_list, LeptosRoutes};
 use tower::Service;
 use worker::*;
 
-use leptos_cloudflare_example::app::{App, GenerateRandomNumber};
+use leptos_cloudflare_example::app::App;
 use leptos_cloudflare_example::api::posts::{GetPosts, GetPost};
 
 #[event(fetch)]
@@ -19,7 +19,6 @@ pub async fn fetch(
         .build();
 
     // Automatic registration of server_fns doesn't work in WASM
-    register_explicit::<GenerateRandomNumber>();
     register_explicit::<GetPosts>();
     register_explicit::<GetPost>();
 
