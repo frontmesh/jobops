@@ -4,8 +4,8 @@ use leptos_axum::{generate_route_list, LeptosRoutes};
 use tower::Service;
 use worker::*;
 
-use leptos_cloudflare_example::app::App;
-use leptos_cloudflare_example::api::posts::{GetPosts, GetPost};
+use rustboard::app::App;
+use rustboard::api::posts::{GetPosts, GetPost};
 
 #[event(fetch)]
 pub async fn fetch(

@@ -81,10 +81,22 @@ pub fn extract_title(frontmatter: &str) -> Option<String> {
         })
 }
 
+fn extract_date_from_frontmatter(frontmatter: &str) -> Option<String> {
+    frontmatter
+        .lines()
+        .find(|line| line.starts_with("date = "))
+        .map(|line| {
+            line.trim_start_matches("date = ")
+                .trim_matches('"')
+                .to_string()
+        })
+}
+
 fn parse_post_content(content: &str) -> Option<Post> {
     let (frontmatter, content) = extract_between_markers(content, "+++")?;
 
     let title = extract_title(&frontmatter)?;
+    let date = extract_date_from_frontmatter(&frontmatter).unwrap_or_default();
     let tags = frontmatter
         .lines()
         .find_map(|line| parse_frontmatter_line(line, "tags"))
@@ -103,10 +115,13 @@ fn parse_post_content(content: &str) -> Option<Post> {
         slug
     };
 
+    // Remove "blog/" prefix if present to avoid double routing
+    let slug = slug.trim_start_matches("blog/").to_string();
+
     Some(Post {
         title,
         content,
-        date: String::new(),
+        date,
         tags,
         category,
         slug,
@@ -114,45 +129,45 @@ fn parse_post_content(content: &str) -> Option<Post> {
     })
 }
 
-#[cfg(feature = "ssr")]
 #[server(GetPosts)]
 pub async fn get_posts() -> Result<Vec<Post>, ServerFnError> {
-    // In a Cloudflare Workers environment, we cannot access the file system.
-    // You would typically:
-    // 1. Embed posts at compile time using include_str! macro
-    // 2. Fetch posts from a remote API or storage service
-    // 3. Use Cloudflare KV storage
+    // Embed blog posts at compile time using include_str! macro
+    let posts_data = vec![
+        include_str!("../../content/blog/getting-started.md"),
+        include_str!("../../content/blog/top-rust-companies-2025.md"),
+        include_str!("../../content/blog/rust-salary-guide-2025.md"),
+    ];
     
-    // For now, returning an empty vector to make compilation work
-    // TODO: Implement proper post loading mechanism for Cloudflare Workers
-    Ok(Vec::new())
-}
-
-#[cfg(not(feature = "ssr"))]
-pub async fn get_posts() -> Result<Vec<Post>, ServerFnError> {
-    Err(ServerFnError::ServerError("get_posts is only available in SSR mode".to_string()))
+    let mut posts = Vec::new();
+    
+    for content in posts_data {
+        if let Some(post) = parse_post_content(content) {
+            posts.push(post);
+        }
+    }
+    
+    // Sort posts by date (newest first)
+    posts.sort_by(|a, b| b.date.cmp(&a.date));
+    
+    Ok(posts)
 }
 
 #[server(GetPost)]
 pub async fn get_post(slug: String) -> Result<Option<Post>, ServerFnError> {
-    get_post_sync(slug)
-}
-
-#[cfg(feature = "ssr")]
-pub fn get_post_sync(slug: String) -> Result<Option<Post>, ServerFnError> {
-    // In a Cloudflare Workers environment, we cannot access the file system.
-    // You would typically:
-    // 1. Embed posts at compile time using include_str! macro
-    // 2. Fetch posts from a remote API or storage service
-    // 3. Use Cloudflare KV storage
+    // Embed blog posts at compile time using include_str! macro
+    let posts_data = vec![
+        include_str!("../../content/blog/getting-started.md"),
+        include_str!("../../content/blog/top-rust-companies-2025.md"),
+        include_str!("../../content/blog/rust-salary-guide-2025.md"),
+    ];
     
-    // For now, returning None to make compilation work
-    // TODO: Implement proper post loading mechanism for Cloudflare Workers
-    let _ = slug; // Suppress unused variable warning
+    for content in posts_data {
+        if let Some(post) = parse_post_content(content) {
+            if post.slug == slug {
+                return Ok(Some(post));
+            }
+        }
+    }
+    
     Ok(None)
-}
-
-#[cfg(not(feature = "ssr"))]
-pub fn get_post_sync(_slug: String) -> Result<Option<Post>, ServerFnError> {
-    Err(ServerFnError::ServerError("get_post_sync is only available in SSR mode".to_string()))
 }

@@ -1,7 +1,14 @@
 [package]
-edition = "2021"
-name = "leptos-cloudflare-example"
+name = "rustboard"
 version = "0.1.0"
+edition = "2021"
+description = "A modern job board application built with Rust, Leptos, and WebAssembly"
+authors = ["RustBoard Team"]
+license = "MIT"
+repository = "https://github.com/frontmesh/rustjobs"
+readme = "README.md"
+keywords = ["leptos", "rust", "webassembly", "job-board", "cloudflare"]
+categories = ["web-programming"]
 
 [[bin]]
 name = "server"
@@ -67,7 +74,7 @@ ssr = [
 
 [package.metadata.leptos]
 # The name used by wasm-bindgen/cargo-leptos for the JS/WASM bundle. Defaults to the crate name
-output-name = "leptos-cloudflare-example"
+output-name = "rustboard"
 # The site root folder is where cargo-leptos generate all output. WARNING: all content of this folder will be erased on a rebuild. Use it in your server setup.
 site-root = "target/site"
 # The site-root relative folder where all compiled output (JS, WASM and CSS) is written

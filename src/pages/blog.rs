@@ -5,11 +5,14 @@ use leptos::*;
 
 #[component]
 pub fn BlogPage() -> impl IntoView {
-    let posts = create_resource(|| (), |_| async move { get_posts().await });
+    let posts = create_local_resource(
+        || (), 
+        |_| async move { get_posts().await }
+    );
 
     view! {
         <MetaTags 
-            title="Blog Posts - JobOps".to_string()
+            title="Blog Posts - Rust Board".to_string()
             description="Read our latest blog posts about job opportunities and career development".to_string()
             url="/blog".to_string()
             image="https://example.com/default-image.jpg".to_string()

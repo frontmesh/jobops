@@ -1,7 +1,7 @@
 {
-  "name": "leptos-cloudflare-example",
+  "name": "rustboard",
   "version": "1.0.0",
-  "description": "",
+  "description": "A modern job board application built with Rust and Leptos",
   "scripts": {
     "build:css": "tailwindcss -i ./src/styles/main.css -o ./site/pkg/tailwind.css --minify",
     "watch:css": "tailwindcss -i ./src/styles/main.css -o ./site/pkg/tailwind.css --watch"

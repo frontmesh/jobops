@@ -1,4 +1,4 @@
-# JobOps Development Commands
+# Rust Board Development Commands
 # Run with `just <command>`
 
 # Default recipe - show available commands
@@ -11,7 +11,7 @@ default:
 # Start development server with hot-reload
 dev:
     #!/usr/bin/env bash
-    echo "🚀 Starting JobOps development environment..."
+    echo "🚀 Starting Rust Board development environment..."
     echo "📦 Building initial assets..."
     just build-css
     just build-wasm
@@ -190,7 +190,7 @@ reset:
 
 # Show project status
 status:
-    echo "📊 JobOps Project Status"
+    echo "📊 Rust Board Project Status"
     echo "========================"
     echo "📁 Current directory: $(pwd)"
     echo "🌿 Git branch: $(git branch --show-current)"
@@ -204,15 +204,15 @@ status:
 
 # Show project URLs
 urls:
-    echo "🌐 JobOps URLs"
+    echo "🌐 Rust Board URLs"
     echo "=============="
-    echo "📚 Repository: https://github.com/frontmesh/jobops"
+    echo "📚 Repository: https://github.com/frontmesh/rustjobs"
     echo "🌍 Live Demo: https://31eb9d73.leptos-test.pages.dev/"
     echo "💻 Local Dev: http://localhost:8080 (when running 'just dev')"
 
 # Development tips
 tips:
-    echo "💡 JobOps Development Tips"
+    echo "💡 Rust Board Development Tips"
     echo "=========================="
     echo "🚀 Quick start: just dev"
     echo "👀 Watch mode: just watch-css (in separate terminal)"

@@ -6,10 +6,10 @@ use crate::components::MetaTags;
 pub fn HomePage() -> impl IntoView {
     view! {
         <MetaTags 
-            title="JobOps - Find Your Next Career Opportunity".to_string()
+            title="Rust Board - Find Your Next Career Opportunity".to_string()
             description="Discover amazing job opportunities and connect with top employers. Start your career journey today.".to_string()
             url="/".to_string()
-            image="https://example.com/jobops-home.jpg".to_string()
+            image="https://example.com/rustjobs-home.jpg".to_string()
         />
         
         // Hero Section
@@ -47,8 +47,8 @@ pub fn HomePage() -> impl IntoView {
         <section class="py-20 bg-white">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center mb-16">
-                    <h2 class="text-3xl font-bold text-gray-900 mb-4">
-                        "Why Choose JobOps?"
+                    <h2 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+                        "Why Choose Rust Board?"
                     </h2>
                     <p class="text-lg text-gray-600">
                         "We make job searching and hiring simple, efficient, and effective."
@@ -96,7 +96,7 @@ pub fn HomePage() -> impl IntoView {
                     "Ready to Get Started?"
                 </h2>
                 <p class="text-lg text-gray-600 mb-8">
-                    "Join thousands of professionals who have found their dream jobs through JobOps."
+                    "Join thousands of professionals who have found their dream jobs through Rust Board."
                 </p>
                 <A 
                     href="/signup" 

@@ -12,7 +12,7 @@ pub struct PostParams {
 pub fn PostPage() -> impl IntoView {
     let params = use_params::<PostParams>();
 
-    let post = create_blocking_resource(
+    let post = create_local_resource(
         move || {
             params.with(|p| match p.as_ref() {
                 Ok(params) => params.slug.clone().unwrap_or_default(),
@@ -24,7 +24,7 @@ pub fn PostPage() -> impl IntoView {
 
     view! {
         <section class="max-w-3xl mx-auto px-4 py-8">
-            <Transition fallback=move || view! {
+            <Suspense fallback=move || view! {
                 <div class="animate-pulse">
                     <div class="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
                     <div class="h-4 bg-gray-200 rounded w-1/4 mb-4"></div>
@@ -38,7 +38,7 @@ pub fn PostPage() -> impl IntoView {
                         Err(e) => view! { <p>"Error: " {e.to_string()}</p> }.into_view()
                     }).unwrap_or_else(|| view! { <div>"Loading..."</div> }.into_view())
                 }}
-            </Transition>
+            </Suspense>
         </section>
     }
 }

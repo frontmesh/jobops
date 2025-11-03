@@ -901,32 +901,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "leptos-cloudflare-example"
-version = "0.1.0"
-dependencies = [
- "async-trait",
- "axum",
- "chrono",
- "console_error_panic_hook",
- "console_log",
- "js-sys",
- "leptos",
- "leptos_axum",
- "leptos_meta",
- "leptos_router",
- "log",
- "markdown",
- "pulldown-cmark",
- "serde",
- "serde_json",
- "toml",
- "tower",
- "wasm-bindgen",
- "worker",
- "worker-macros",
-]
-
-[[package]]
 name = "leptos_axum"
 version = "0.6.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1611,6 +1585,32 @@ dependencies = [
  "syn 2.0.106",
  "syn_derive",
  "thiserror",
+]
+
+[[package]]
+name = "rustboard"
+version = "0.1.0"
+dependencies = [
+ "async-trait",
+ "axum",
+ "chrono",
+ "console_error_panic_hook",
+ "console_log",
+ "js-sys",
+ "leptos",
+ "leptos_axum",
+ "leptos_meta",
+ "leptos_router",
+ "log",
+ "markdown",
+ "pulldown-cmark",
+ "serde",
+ "serde_json",
+ "toml",
+ "tower",
+ "wasm-bindgen",
+ "worker",
+ "worker-macros",
 ]
 
 [[package]]

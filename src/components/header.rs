@@ -4,7 +4,7 @@ use leptos_router::*;
 #[component]
 pub fn Header() -> impl IntoView {
     let (mobile_menu_open, set_mobile_menu_open) = create_signal(false);
-    
+
     let toggle_mobile_menu = move |_| {
         set_mobile_menu_open.update(|open| *open = !*open);
     };
@@ -15,13 +15,11 @@ pub fn Header() -> impl IntoView {
                 <div class="flex justify-between items-center py-6 md:justify-start md:space-x-10">
                     // Logo
                     <div class="flex justify-start lg:w-0 lg:flex-1">
-                        <A href="/" class="inline-flex items-center">
-                            <span class="text-2xl md:text-3xl tracking-tight leading-10 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-600">
-                                JobOps
-                            </span>
-                        </A>
+                    <a href="/" class="flex items-center space-x-2">
+                        <span class="text-2xl md:text-3xl tracking-tight leading-10 font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-600">Rust Board</span>
+                    </a>
                     </div>
-                    
+
                     // Mobile menu button
                     <div class="-mr-2 -my-2 md:hidden">
                         <button
@@ -36,7 +34,7 @@ pub fn Header() -> impl IntoView {
                             </svg>
                         </button>
                     </div>
-                    
+
                     // Desktop navigation
                     <nav class="hidden md:flex space-x-10">
                         <A href="/" class="text-base font-medium text-gray-500 hover:text-gray-900">
@@ -46,7 +44,7 @@ pub fn Header() -> impl IntoView {
                             "Blog"
                         </A>
                     </nav>
-                    
+
                     // Desktop action buttons
                     <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
                         <A href="/log-in" class="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
@@ -57,7 +55,7 @@ pub fn Header() -> impl IntoView {
                         </A>
                     </div>
                 </div>
-                
+
                 // Mobile menu (visible when mobile_menu_open is true)
                 <div class={move || if mobile_menu_open.get() { "md:hidden" } else { "hidden" }}>
                     <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">

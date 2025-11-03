@@ -1,8 +1,8 @@
-# JobOps
+# Rust Board
 
 🚀 **A modern job board application built with Rust and WebAssembly**
 
-JobOps is a professional job board platform built using Leptos (Rust web framework) and deployed on Cloudflare Pages. It demonstrates modern web development practices with server-side rendering, responsive design, and edge computing.
+Rust Board is a professional job board platform built using Leptos (Rust web framework) and deployed on Cloudflare Pages. It demonstrates modern web development practices with server-side rendering, responsive design, and edge computing.
 
 [🌐 Live Demo](https://31eb9d73.leptos-test.pages.dev/)
 
@@ -19,7 +19,7 @@ JobOps is a professional job board platform built using Leptos (Rust web framewo
 ## 🛠️ Tech Stack
 
 - **Frontend**: [Leptos](https://leptos.dev/) (Rust web framework)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom JobOps theme
+- **Styling**: [Tailwind CSS](https://tailwindcss.com/) with custom Rust Board theme
 - **Deployment**: [Cloudflare Pages](https://pages.cloudflare.com/)
 - **Build Tools**: Rust + WASM + wasm-bindgen
 - **Development**: Wrangler CLI for local testing
@@ -40,9 +40,8 @@ JobOps is a professional job board platform built using Leptos (Rust web framewo
 
 1. **Clone the repository**
    ```bash
-   git clone git@github.com:frontmesh/jobops.git
-   cd jobops
-   ```
+   git clone git@github.com:frontmesh/rustjobs.git
+   cd rustjobs   ```
 
 2. **Install dependencies**
    ```bash
@@ -94,7 +93,7 @@ just --list
 ## 📁 Project Structure
 
 ```
-jobops/
+rustjobs/
 ├── src/
 │   ├── app.rs              # Main application component
 │   ├── components/         # Reusable UI components
@@ -133,7 +132,7 @@ The application will be available at your Cloudflare Pages URL.
 ### Architecture
 
 - **Frontend**: Leptos components with server-side rendering
-- **Styling**: Tailwind CSS with custom JobOps design system
+- **Styling**: Tailwind CSS with custom Rust Board design system
 - **State Management**: Leptos reactive signals and server functions
 - **Routing**: Leptos Router with client-side navigation
 - **WASM Compilation**: Rust compiled to WebAssembly for edge performance
